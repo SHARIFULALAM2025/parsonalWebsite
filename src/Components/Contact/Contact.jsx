@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+ import { toast, ToastContainer } from 'react-toastify'
 import {
   FaEnvelope,
   FaPhoneAlt,
@@ -8,8 +9,76 @@ import {
   FaClock,
   FaPaperPlane,
 } from 'react-icons/fa'
-
+import { useForm } from 'react-hook-form'
+import emailjs from '@emailjs/browser'
 const Contact = () => {
+ const [isSending, setIsSending] = useState(false) // For loading state
+
+ const {
+   register,
+   handleSubmit,
+   reset, // To clear form after success
+   formState: { errors },
+ } = useForm()
+
+ const handelData = async (data) => {
+   setIsSending(true)
+
+   // EmailJS Variables
+   const serviceID = 'service_2f5l9eq'
+   const templateID = 'template_prrovvc'
+   const publicKey = 'i5XgpyNRK4OoyQk0O'
+
+   try {
+     // 1. If you have an attachment, we need to convert it to a Base64 string
+     // because EmailJS .send() expects strings/objects.
+     let attachmentBase64 = ''
+     if (data.attachment && data.attachment[0]) {
+       const file = data.attachment[0]
+       // Note: EmailJS free tier limit is ~50KB.
+       // If files are larger, it's better to use a cloud storage API.
+       attachmentBase64 = await toBase64(file)
+     }
+
+     // 2. Prepare Template Params (matching your HTML template keys)
+     const templateParams = {
+       name: data.name,
+       email: data.email,
+       subject: data.subject,
+       message: data.message,
+       date_time: new Date().toLocaleString(),
+       attachment: attachmentBase64, // Ensure {{attachment}} is set in EmailJS dashboard
+     }
+
+     // 3. Send Email
+     const response = await emailjs.send(
+       serviceID,
+       templateID,
+       templateParams,
+       publicKey
+     )
+
+     if (response.status === 200) {
+       toast.success('Message sent successfully! 🚀')
+       reset() // Clear form
+     }
+   } catch (error) {
+     console.error('Email Error:', error)
+     toast.error('Failed to send message. Please try again later.')
+   } finally {
+     setIsSending(false)
+   }
+ }
+
+ // Helper function to handle file conversion
+ const toBase64 = (file) =>
+   new Promise((resolve, reject) => {
+     const reader = new FileReader()
+     reader.readAsDataURL(file)
+     reader.onload = () => resolve(reader.result)
+     reader.onerror = (error) => reject(error)
+   })
+
   const contactInfo = [
     {
       icon: FaEnvelope,
@@ -180,32 +249,76 @@ const Contact = () => {
               Send Me a Message
             </h3>
 
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit(handelData)} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
-                <input
-                  type="text"
-                  placeholder="Full Name *"
-                  className="w-full px-5 py-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
-                />
-                <input
-                  type="email"
-                  placeholder="Email Address *"
-                  className="w-full px-5 py-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
-                />
+                <div className="">
+                  <input
+                    {...register('name', { required: true })}
+                    type="text"
+                    placeholder="Full Name *"
+                    className="w-full px-5 py-4 rounded-xl border border-gray-300 dark:border-gray-600 dark:text-white bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
+                  />
+                  {errors.name && (
+                    <span className="text-red-700 font-semibold">
+                      This name field is required !
+                    </span>
+                  )}
+                </div>
+
+                <div className="">
+                  {' '}
+                  <input
+                    type="email"
+                    {...register('email', { required: true })}
+                    placeholder="Email Address *"
+                    className="w-full px-5 py-4 rounded-xl border border-gray-300 dark:border-gray-600 dark:text-white bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
+                  />
+                  {errors.email && (
+                    <span className="text-red-700 font-semibold">
+                      This email field is required !
+                    </span>
+                  )}
+                </div>
               </div>
 
-              <input
-                type="text"
-                placeholder="Subject *"
-                className="w-full px-5 py-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
-              />
+              <div className="">
+                {' '}
+                <input
+                  type="text"
+                  {...register('subject', { required: true })}
+                  placeholder="Enter your subject *"
+                  className="w-full px-5 py-4 rounded-xl border border-gray-300 dark:border-gray-600 dark:text-white bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
+                />
+                {errors.email && (
+                  <span className="text-red-700 font-semibold">
+                    This email field is required !
+                  </span>
+                )}
+              </div>
 
-              <textarea
-                rows="6"
-                placeholder="Tell me about your project or just say hello!"
-                className="w-full px-5 py-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 outline-none resize-none"
-              ></textarea>
-
+              <div className="">
+                <textarea
+                  {...register('message', { required: true })}
+                  rows="6"
+                  placeholder="Tell me about your project or just say hello!"
+                  className="w-full px-5 py-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none resize-none"
+                ></textarea>
+                <div className="">
+                  <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Attach File (Optional)
+                  </label>
+                  <input
+                    type="file"
+                    {...register('attachment')}
+                    className="w-full px-5 py-3 rounded-xl border border-gray-300 dark:border-gray-600 dark:text-white bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                  />
+                </div>
+                {errors.message && (
+                  <span className="text-red-700 font-semibold">
+                    This message field is required !
+                  </span>
+                )}
+              </div>
               <button
                 type="submit"
                 className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold py-4 rounded-xl hover:shadow-xl transition"
@@ -215,6 +328,7 @@ const Contact = () => {
               </button>
             </form>
           </motion.div>
+          <ToastContainer />
         </div>
       </div>
     </section>
