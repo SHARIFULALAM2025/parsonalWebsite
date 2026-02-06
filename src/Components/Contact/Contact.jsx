@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
- import { toast, ToastContainer } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 import {
   FaEnvelope,
   FaPhoneAlt,
@@ -11,73 +11,76 @@ import {
 } from 'react-icons/fa'
 import { useForm } from 'react-hook-form'
 import emailjs from '@emailjs/browser'
+import { uploadImage } from '../UploadImage/UploadImage'
 const Contact = () => {
- const [isSending, setIsSending] = useState(false) // For loading state
+  const [isSending, setIsSending] = useState(false) // For loading state
 
- const {
-   register,
-   handleSubmit,
-   reset, // To clear form after success
-   formState: { errors },
- } = useForm()
+  const {
+    register,
+    handleSubmit,
+    reset, // To clear form after success
+    formState: { errors },
+  } = useForm()
 
- const handelData = async (data) => {
-   setIsSending(true)
+  const handelData = async (formData) => {
+    // নাম পরিবর্তন করে formData দিলাম বোঝার সুবিধার জন্য
+    setIsSending(true)
 
-   // EmailJS Variables
-   const serviceID = 'service_2f5l9eq'
-   const templateID = 'template_prrovvc'
-   const publicKey = 'i5XgpyNRK4OoyQk0O'
+    try {
+      let uploadedLinks = []
 
-   try {
-     // 1. If you have an attachment, we need to convert it to a Base64 string
-     // because EmailJS .send() expects strings/objects.
-     let attachmentBase64 = ''
-     if (data.attachment && data.attachment[0]) {
-       const file = data.attachment[0]
-       // Note: EmailJS free tier limit is ~50KB.
-       // If files are larger, it's better to use a cloud storage API.
-       attachmentBase64 = await toBase64(file)
-     }
+      if (formData.attachment && formData.attachment.length > 0) {
+        for (const file of formData.attachment) {
+          const url = await uploadImage(file)
+          if (url) {
+            uploadedLinks.push(url)
+          }
+        }
+      }
 
-     // 2. Prepare Template Params (matching your HTML template keys)
-     const templateParams = {
-       name: data.name,
-       email: data.email,
-       subject: data.subject,
-       message: data.message,
-       date_time: new Date().toLocaleString(),
-       attachment: attachmentBase64, // Ensure {{attachment}} is set in EmailJS dashboard
-     }
+      console.log('Final URL to be sent:', uploadedLinks)
 
-     // 3. Send Email
-     const response = await emailjs.send(
-       serviceID,
-       templateID,
-       templateParams,
-       publicKey
-     )
+      // ২. শুধুমাত্র প্রয়োজনীয় ডেটা নিয়ে নতুন একটি অবজেক্ট তৈরি করুন
+      // সরাসরি 'formData' অবজেক্টটি কোথাও ব্যবহার করবেন না, কারণ এতে বড় ফাইল অবজেক্ট আছে।
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        date_time: new Date().toLocaleString(),
+        attachments: uploadedLinks.join('\n'), // এখানে শুধু ছোট একটি স্ট্রিং URL যাচ্ছে
+      }
 
-     if (response.status === 200) {
-       toast.success('Message sent successfully! 🚀')
-       reset() // Clear form
-     }
-   } catch (error) {
-     console.error('Email Error:', error)
-     toast.error('Failed to send message. Please try again later.')
-   } finally {
-     setIsSending(false)
-   }
- }
+      // ৩. সাইজ চেক করুন (Console এ দেখতে পাবেন)
+      const payloadSize = new Blob([JSON.stringify(templateParams)]).size / 1024
+      console.log(`Payload size: ${payloadSize.toFixed(2)} KB`)
 
- // Helper function to handle file conversion
- const toBase64 = (file) =>
-   new Promise((resolve, reject) => {
-     const reader = new FileReader()
-     reader.readAsDataURL(file)
-     reader.onload = () => resolve(reader.result)
-     reader.onerror = (error) => reject(error)
-   })
+      if (payloadSize > 50) {
+        toast.error('Message is too long. Please reduce text.')
+        return
+      }
+
+      // ৪. ইমেইল পাঠানো
+      const response = await emailjs.send(
+        'service_2f5l9eq',
+        'template_prrovvc',
+        templateParams, // নিশ্চিত করুন এখানে শুধু templateParams যাচ্ছে
+        'i5XgpyNRK4OoyQk0O'
+      )
+
+      if (response.status === 200) {
+        toast.success(`Thank ${formData.name}  your   Message sent successfully! 🚀`)
+        reset() // ফর্ম ক্লিয়ার হবে
+      }
+    } catch (error) {
+      // এরর ডিটেইলস দেখা
+      const errorMsg = error?.text || error?.message || 'Something went wrong'
+      console.error('Detailed Email Error:', errorMsg)
+      toast.error(`Error: ${errorMsg}`)
+    } finally {
+      setIsSending(false)
+    }
+  }
 
   const contactInfo = [
     {
@@ -309,6 +312,7 @@ const Contact = () => {
                   </label>
                   <input
                     type="file"
+                    multiple
                     {...register('attachment')}
                     className="w-full px-5 py-3 rounded-xl border border-gray-300 dark:border-gray-600 dark:text-white bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                   />
