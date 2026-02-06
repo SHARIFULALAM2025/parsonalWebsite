@@ -4,7 +4,10 @@ import { FaDownload, FaGithub, FaLinkedin, FaFacebook } from 'react-icons/fa'
 
 const Hero = () => {
   const handleDownloadResume = () => {
-    window.open('/resume.pdf', '_blank')
+    window.open(
+      'https://drive.google.com/file/d/1LOn-iHcLKPI9uPkJE6nv3JnTGbRpcMOi/view?usp=sharing',
+      '_blank'
+    )
   }
 
   const handleGetInTouch = () => {
