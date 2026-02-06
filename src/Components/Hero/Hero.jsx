@@ -152,7 +152,7 @@ const Hero = () => {
             <div className="w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-2 shadow-2xl">
               <div className="w-full h-full rounded-full bg-white dark:bg-gray-800 overflow-hidden">
                 <img
-                  src="https://i.ibb.co/SwWVFTq6/3d531e24-1b34-4314-896b-8f535767e388.png"
+                  src="https://i.ibb.co.com/FktNZkRs/624134077-122170056674905684-5192487309492115686-n-removebg-preview.png"
                   alt="Shariful Alam"
                   className="w-full h-full object-cover object-top"
                 />
