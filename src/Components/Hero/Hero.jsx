@@ -1,11 +1,23 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { FaDownload, FaGithub, FaLinkedin, FaFacebook } from 'react-icons/fa'
+import {
+  FaDownload,
+  FaGithub,
+  FaLinkedin,
+  FaFacebook,
+  FaAward,
+} from 'react-icons/fa'
 
 const Hero = () => {
   const handleDownloadResume = () => {
     window.open(
       'https://drive.google.com/file/d/1LOn-iHcLKPI9uPkJE6nv3JnTGbRpcMOi/view?usp=sharing',
+      '_blank'
+    )
+  }
+  const handleCertificate = () => {
+    window.open(
+      '/public/development2.pdf',
       '_blank'
     )
   }
@@ -114,15 +126,22 @@ const Hero = () => {
             >
               <button
                 onClick={handleDownloadResume}
-                className="flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-4 px-8 rounded-xl hover:from-blue-700 hover:to-purple-700 transition"
+                className="flex items-center justify-center gap-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-3 px-4 rounded-xl hover:from-blue-700 hover:to-purple-700 transition"
               >
                 <FaDownload />
                 Download Resume
               </button>
+              <button
+                onClick={handleCertificate}
+                className="flex items-center justify-center gap-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-3 px-4 rounded-xl hover:from-blue-700 hover:to-purple-700 transition"
+              >
+                <FaAward />
+                Download Certificate
+              </button>
 
               <button
                 onClick={handleGetInTouch}
-                className="border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 font-bold py-4 px-8 rounded-xl hover:bg-blue-600 dark:hover:bg-blue-400 hover:text-white dark:hover:text-gray-900 transition"
+                className="border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 font-bold py-3 px-4 rounded-xl hover:bg-blue-600 dark:hover:bg-blue-400 hover:text-white dark:hover:text-gray-900 transition"
               >
                 Get In Touch
               </button>
