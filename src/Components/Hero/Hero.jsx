@@ -17,7 +17,7 @@ const Hero = () => {
   }
   const handleCertificate = () => {
     window.open(
-      '/public/development2.pdf',
+      '/development2.pdf',
       '_blank'
     )
   }
