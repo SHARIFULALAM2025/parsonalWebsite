@@ -143,6 +143,32 @@ const Projects = () => {
       githubClient: 'https://github.com/SHARIFULALAM2025/AssignmentClient-12',
       featured: true,
     },
+    {
+      id: 4,
+      name: 'E-commercial-website',
+      fullName: 'E-commercial-website is an E-commercial platform',
+      image: 'https://i.ibb.co.com/Myh4HsCh/Capsgsgsture.png',
+      shortDescription:
+        'it is an E-commercial-website website .user can find his/her product choose easily . they can filter, search the name of category .it has smart feature sech as carousel .smart contract , dashboard-admin customer...',
+      purpose:
+        'this is a smart project . user can easily order his/her project',
+      features: [
+        'Dynamic search: category based search',
+        'Service Management: category based search (man---women).',
+        'order : "easy functionality',
+        'contact: smart contact system',
+        'browse: category wise browse',
+        
+      ],
+      techStack: {
+        frontend: ['React 19', 'Tailwind CSS', 'Material UI', 'Swiper.js'],
+        backend: ['MongoDB', 'Nodemailer'],
+      },
+      liveLink: 'https://my-website-kappa-blue.vercel.app',
+      githubClient:
+        'https://github.com/SHARIFULALAM2025/E-commercial-website/tree/main/frontend/my-website',
+      featured: true,
+    },
   ]
 
 
