@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { toast, ToastContainer } from 'react-toastify'
 import {
@@ -127,12 +127,21 @@ const Contact = () => {
       transition: { duration: 0.8, ease: 'easeOut' },
     },
   }
+const [mounted, setMounted] = useState(false)
+      const bgStyle =
 
+          {
+              backgroundColor: '#0F172A',
+
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23334155' fill-opacity='0.2' d='M1 3h1v1H1V3zm2-2h1v1H2V1z'%3E%3C/path%3E%3C/svg%3E")`,
+            }
+
+
+      useEffect(() => {
+        setMounted(true)
+      }, [])
   return (
-    <section
-      id="contact"
-      className="py-24 bg-white dark:bg-gray-800 transition-colors duration-500"
-    >
+    <section style={bgStyle} id="contact" className="py-24 ">
       <div className="container-custom">
         {/* Header */}
         <motion.div

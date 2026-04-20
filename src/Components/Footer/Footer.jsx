@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   FaHeart,
@@ -9,6 +9,10 @@ import {
   FaCode,
   FaCoffee,
 } from 'react-icons/fa'
+import { MdMarkEmailRead } from 'react-icons/md'
+import { FaPhoneVolume } from 'react-icons/fa6'
+import { HiLocationMarker } from 'react-icons/hi'
+
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -50,9 +54,21 @@ const Footer = () => {
       transition: { duration: 0.8, ease: 'easeOut' },
     },
   }
+const [mounted, setMounted] = useState(false)
+      const bgStyle =
 
+          {
+              backgroundColor: '#0F172A',
+
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23334155' fill-opacity='0.2' d='M1 3h1v1H1V3zm2-2h1v1H2V1z'%3E%3C/path%3E%3C/svg%3E")`,
+            }
+
+
+      useEffect(() => {
+        setMounted(true)
+      }, [])
   return (
-    <footer className="bg-gray-900 dark:bg-gray-950 text-gray-100 relative">
+    <footer style={bgStyle} className=" relative">
       {/* Back to top */}
       <motion.button
         whileHover={{ scale: 1.2 }}
@@ -100,7 +116,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <motion.div variants={fadeInUp}>
-            <h4 className="text-xl font-bold mb-6">Quick Links</h4>
+            <h4 className="text-xl font-bold text-white mb-6">Quick Links</h4>
             <div className="space-y-3">
               {quickLinks.map((link, index) => (
                 <button
@@ -120,8 +136,10 @@ const Footer = () => {
 
           {/* Social */}
           <motion.div variants={fadeInUp}>
-            <h4 className="text-xl font-bold mb-6">Connect With Me</h4>
-            <div className="flex gap-3 mb-6">
+            <h4 className="text-xl text-white font-bold mb-6">
+              Connect With Me
+            </h4>
+            <div className="flex gap-3 text-white mb-6">
               {socialLinks.map((social, index) => {
                 const Icon = social.icon
                 return (
@@ -140,9 +158,16 @@ const Footer = () => {
               })}
             </div>
             <div className="text-sm text-gray-400 space-y-1">
-              <p>📧 sharifullinkdin2025@gmail.com</p>
-              <p>📱 +8801829197321</p>
-              <p>📍 Uttara Sector-13,Road-5,House:65 Dhaka -Bangladesh</p>
+              <p className="flex items-center gap-3">
+                <MdMarkEmailRead></MdMarkEmailRead>{' '}
+                sharifullinkdin2025@gmail.com
+              </p>
+              <p className="flex items-center gap-3">
+                <FaPhoneVolume></FaPhoneVolume> +8801829197321
+              </p>
+              <p className="flex items-center gap-3">
+                <HiLocationMarker></HiLocationMarker>Uttara Sector-13,Road-5,House:65 Dhaka -Bangladesh
+              </p>
             </div>
           </motion.div>
         </motion.div>

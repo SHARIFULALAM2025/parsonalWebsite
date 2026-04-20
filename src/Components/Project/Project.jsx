@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   FaExternalLinkAlt,
@@ -158,7 +158,7 @@ const Projects = () => {
         'order : "easy functionality',
         'contact: smart contact system',
         'browse: category wise browse',
-        
+
       ],
       techStack: {
         frontend: ['React 19', 'Tailwind CSS', 'Material UI', 'Swiper.js'],
@@ -173,12 +173,21 @@ const Projects = () => {
 
 
   const carouselItems = [...projects, ...projects]
+const [mounted, setMounted] = useState(false)
+      const bgStyle =
 
+          {
+              backgroundColor: '#0F172A',
+
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23334155' fill-opacity='0.2' d='M1 3h1v1H1V3zm2-2h1v1H2V1z'%3E%3C/path%3E%3C/svg%3E")`,
+            }
+
+
+      useEffect(() => {
+        setMounted(true)
+      }, [])
   return (
-    <section
-      id="projects"
-      className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-500"
-    >
+    <section style={bgStyle} id="projects" className="py-20 ">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
