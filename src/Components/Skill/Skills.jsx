@@ -195,13 +195,14 @@
 // export default Skills
 import React from 'react';
 import Graph from '../Graph/Graph';
+import Container from '../Container/Container';
 
 const Skills = () => {
   return (
-    <div>
-      <Graph/>
-    </div>
-  );
+    <Container>
+      <Graph />
+    </Container>
+  )
 };
 
 export default Skills;

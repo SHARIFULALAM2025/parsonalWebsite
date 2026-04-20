@@ -1,10 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { FiMenu, FiX, FiCode } from 'react-icons/fi'
+import Container from '../Container/Container'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
+   const [mounted, setMounted] = useState(false)
+      const bgStyle =
+
+          {
+              backgroundColor: '#0F172A',
+
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23334155' fill-opacity='0.2' d='M1 3h1v1H1V3zm2-2h1v1H2V1z'%3E%3C/path%3E%3C/svg%3E")`,
+            }
+
+
+      useEffect(() => {
+        setMounted(true)
+      }, [])
   // Detect scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -42,74 +56,78 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/20'
-          : 'bg-transparent'
-      }`}
+      className={` fixed top-0  left-0 right-0  z-50 transition-all duration-300 `}
     >
-      {/* Container */}
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between items-center py-4 relative">
-          {/* Logo */}
-          <div
-            className="flex items-center gap-3 cursor-pointer"
-            onClick={() => scrollToSection('#home')}
-          >
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
-              <FiCode size={20} className="text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                SHARIFUL ALAM
-              </span>
-              <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
-                Full Stack Developer
-              </span>
-            </div>
-          </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium relative group"
-              >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
-              </button>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle Menu"
+      <Container>
+        {/* Container */}
+        <div
+          className={`transition-all duration-300 ${
+            scrolled
+              ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/20'
+              : 'bg-transparent'
+          }`}
+        >
+          <div className="flex justify-between items-center py-3 relative">
+            {/* Logo */}
+            <div
+              className="flex items-center gap-3 cursor-pointer"
+              onClick={() => scrollToSection('#home')}
             >
-              {isOpen ? <FiX size={26} /> : <FiMenu size={26} />}
-            </button>
-          </div>
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
+                <FiCode size={20} className="text-white" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  SHARIFUL ALAM
+                </span>
+                <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                  Full Stack Developer
+                </span>
+              </div>
+            </div>
 
-          {/* Mobile Menu */}
-          {isOpen && (
-            <div className="md:hidden absolute top-full left-0 right-0 mt-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-200/20 dark:border-gray-700/20 z-50 animate-fade-in-up">
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left px-6 py-4 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition font-medium"
+                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium relative group"
                 >
                   {item.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
                 </button>
               ))}
             </div>
-          )}
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button
+                className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label="Toggle Menu"
+              >
+                {isOpen ? <FiX size={26} /> : <FiMenu size={26} />}
+              </button>
+            </div>
+
+            {/* Mobile Menu */}
+            {isOpen && (
+              <div className="md:hidden absolute top-full left-0 right-0 mt-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-200/20 dark:border-gray-700/20 z-50 animate-fade-in-up">
+                {navItems.map((item) => (
+                  <button
+                    key={item.name}
+                    onClick={() => scrollToSection(item.href)}
+                    className="block w-full text-left px-6 py-4 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition font-medium"
+                  >
+                    {item.name}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      </Container>
     </nav>
   )
 }
