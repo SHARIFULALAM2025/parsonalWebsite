@@ -25,7 +25,7 @@ const Hero = () => {
     }, [])
   const handleDownloadResume = () => {
     window.open(
-      'https://drive.google.com/file/d/1LOn-iHcLKPI9uPkJE6nv3JnTGbRpcMOi/view?usp=sharing',
+      'Resume.pdf',
       '_blank'
     )
   }

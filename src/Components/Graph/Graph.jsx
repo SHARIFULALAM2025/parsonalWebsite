@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 const data = [
-  { name: 'React', uv: 4000 },
-  { name: 'Next.js', uv: 3000 },
-  { name: 'Javascript', uv: 2000 },
-  { name: 'Express.js', uv: 2780 },
-  { name: 'MongoDB', uv: 1890 },
-  { name: 'MY SQL', uv: 2390 },
-  { name: 'HTML', uv: 3490 },
-  { name: 'CSS', uv: 3920 },
-  { name: 'GIT ', uv: 3490 },
-  { name: 'Vercel', uv: 3490 },
+  { name: 'React', uv: 3620, icon: '/React.svg' },
+  { name: 'Next.js', uv: 3000, icon: '/Next.svg' },
+  { name: 'Javascript', uv: 2900, icon: '/Javascript.png' },
+  { name: 'Express.js', uv: 2780, icon: '/Express.png' },
+  { name: 'MongoDB', uv: 2890, icon: '/MongoDB.svg' },
+  { name: 'MY SQL', uv: 3090, icon: '/Sql.svg' },
+  { name: 'HTML', uv: 3490, icon: '/html.svg' },
+  { name: 'CSS', uv: 3600, icon: '/Css.svg' },
+  { name: 'GIT ', uv: 3490, icon: '/git.svg' },
+  { name: 'Vercel', uv: 3490, icon: '/vercel.svg' },
 ]
 
 const colors = [
@@ -27,7 +27,6 @@ const colors = [
   '#38B2AC',
 ]
 
-// Animation Variants
 const container = {
   hidden: { opacity: 0 },
   visible: {
@@ -57,7 +56,7 @@ const Graph = () => {
   const chartWidth = 700
   const maxUv = Math.max(...data.map((d) => d.uv))
 
-  const padding = { top: 40, right: 20, bottom: 60, left: 60 }
+  const padding = { top: 80, right: 20, bottom: 80, left: 60 }
   const viewboxWidth = chartWidth + padding.left + padding.right
   const viewboxHeight = chartHeight + padding.top + padding.bottom
 
@@ -71,11 +70,13 @@ const Graph = () => {
   if (!mounted) return null
 
   return (
-    <div style={bgStyle} className="w-full p-6 shadow-2xl">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Header with Motion */}
+    <div
+      style={bgStyle}
+      className="w-full p-6 shadow-2xl min-h-screen flex flex-col justify-center"
+    >
+      <div className="max-w-7xl mx-auto px-4 w-full">
         <motion.div
-          className="text-center mb-10"
+          className="text-center mb-16"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -94,109 +95,137 @@ const Graph = () => {
             Technologies and tools I use to build modern web applications
           </motion.p>
         </motion.div>
-      </div>
 
-      <svg
-        viewBox={`0 0 ${viewboxWidth} ${viewboxHeight}`}
-        className="w-full h-auto overflow-visible"
-      >
-        {/* Horizontal Grid Lines */}
-        {[0, 0.25, 0.5, 0.75, 1].map((tick) => {
-          const yPos = chartHeight - chartHeight * tick + padding.top
-          return (
-            <g key={tick}>
-              <line
-                x1={padding.left}
-                x2={chartWidth + padding.left}
-                y1={yPos}
-                y2={yPos}
-                stroke="#334155"
-                strokeDasharray="4"
-              />
-              <text
-                x={padding.left - 15}
-                y={yPos + 4}
-                textAnchor="end"
-                className="text-xs fill-slate-400 font-medium"
-              >
-                {tick * 100}%
-              </text>
-            </g>
-          )
-        })}
-
-        {/* Bars with Motion */}
-        <motion.g initial="hidden" animate="visible" variants={container}>
-          {data.map((item, index) => {
-            const barWidth = (chartWidth / data.length) * 0.7
-            const x =
-              padding.left +
-              index * (chartWidth / data.length) +
-              (chartWidth / data.length - barWidth) / 2
-            const barHeight = (item.uv / maxUv) * chartHeight
-            const y = chartHeight - barHeight + padding.top
-            const color = colors[index % colors.length]
-
+        <svg
+          viewBox={`0 0 ${viewboxWidth} ${viewboxHeight}`}
+          className="w-full h-auto overflow-visible"
+        >
+          {/* Horizontal Grid Lines */}
+          {[0, 0.25, 0.5, 0.75, 1].map((tick) => {
+            const yPos = chartHeight - chartHeight * tick + padding.top
             return (
-              <g key={item.name} className="group">
-                {/* Animated Path */}
-                <motion.path
-                  initial={{
-                    d: getPath(x, chartHeight + padding.top, barWidth, 0),
-                    opacity: 0,
-                  }}
-                  animate={{
-                    d: getPath(x, y, barWidth, barHeight),
-                    opacity: 0.9,
-                  }}
-                  transition={{
-                    duration: 0.8,
-                    delay: index * 0.05,
-                    ease: 'easeOut',
-                  }}
-                  fill={color}
-                  className="hover:brightness-125 cursor-pointer hover:opacity-100 transition-all duration-300"
+              <g key={tick}>
+                <line
+                  x1={padding.left}
+                  x2={chartWidth + padding.left}
+                  y1={yPos}
+                  y2={yPos}
+                  stroke="#334155"
+                  strokeDasharray="4"
                 />
-
-                {/* Value Label */}
-                <motion.text
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1 }}
-                  x={x + barWidth / 2}
-                  y={y - 12}
-                  textAnchor="middle"
-                  fill={color}
-                  className="text-[10px] font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                >
-                  {item.uv}
-                </motion.text>
-
-                {/* X-Axis Name */}
                 <text
-                  x={x + barWidth / 2}
-                  y={chartHeight + padding.top + 25}
-                  textAnchor="middle"
-                  transform={`rotate(15, ${x + barWidth / 2}, ${chartHeight + padding.top + 25})`}
-                  className="text-[10px] fill-slate-300 font-medium uppercase tracking-tighter"
+                  x={padding.left - 15}
+                  y={yPos + 4}
+                  textAnchor="end"
+                  className="text-xs fill-slate-500 font-medium"
                 >
-                  {item.name}
+                  {tick * 100}%
                 </text>
               </g>
             )
           })}
-        </motion.g>
 
-        {/* Bottom Baseline */}
-        <line
-          x1={padding.left}
-          x2={chartWidth + padding.left}
-          y1={chartHeight + padding.top}
-          y2={chartHeight + padding.top}
-          stroke="#475569"
-          strokeWidth="2"
-        />
-      </svg>
+          <motion.g initial="hidden" animate="visible" variants={container}>
+            {data.map((item, index) => {
+              const barWidth = (chartWidth / data.length) * 0.7
+              const x =
+                padding.left +
+                index * (chartWidth / data.length) +
+                (chartWidth / data.length - barWidth) / 2
+              const barHeight = (item.uv / maxUv) * chartHeight
+              const y = chartHeight - barHeight + padding.top
+              const color = colors[index % colors.length]
+              const iconSize = 28
+
+              return (
+                <g key={item.name} className="group">
+                  <motion.path
+                    initial={{
+                      d: getPath(x, chartHeight + padding.top, barWidth, 0),
+                      opacity: 0,
+                    }}
+                    animate={{
+                      d: getPath(x, y, barWidth, barHeight),
+                      opacity: 0.9,
+                    }}
+                    transition={{
+                      duration: 1,
+                      delay: index * 0.1,
+                      ease: [0.43, 0.13, 0.23, 0.96],
+                    }}
+                    fill={color}
+                    className="hover:brightness-125 cursor-pointer transition-all duration-300"
+                  />
+
+                  <motion.image
+                    href={item.icon}
+                    x={x + barWidth / 2 - iconSize / 2}
+                    y={y - iconSize - 15}
+                    width={iconSize}
+                    height={iconSize}
+                    initial={{ opacity: 0, scale: 0, y: y }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                      y: [
+                        y - iconSize - 15,
+                        y - iconSize - 22,
+                        y - iconSize - 15,
+                      ],
+                    }}
+                    transition={{
+                      opacity: { delay: 0.5 + index * 0.1 },
+                      scale: {
+                        type: 'spring',
+                        stiffness: 200,
+                        damping: 10,
+                        delay: 0.6 + index * 0.1,
+                      },
+                      y: {
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                        delay: index * 0.2,
+                      },
+                    }}
+                  />
+
+                  <motion.text
+                    x={x + barWidth / 2}
+                    y={y - 55}
+                    textAnchor="middle"
+                    fill={color}
+                    className="text-[12px] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                  >
+                    {item.uv}
+                  </motion.text>
+
+                  {/* X-Axis Labels with Rotation (বাঁকা টেক্সট) */}
+                  <text
+                    x={x + barWidth / 2}
+                    y={chartHeight + padding.top + 35}
+                    textAnchor="middle"
+                    /* এখানে ১৫ ডিগ্রি রোটেশন অ্যাড করা হয়েছে */
+                    transform={`rotate(15, ${x + barWidth / 2}, ${chartHeight + padding.top + 35})`}
+                    className="text-[11px] fill-slate-400 font-semibold uppercase tracking-wider"
+                  >
+                    {item.name}
+                  </text>
+                </g>
+              )
+            })}
+          </motion.g>
+
+          <line
+            x1={padding.left}
+            x2={chartWidth + padding.left}
+            y1={chartHeight + padding.top}
+            y2={chartHeight + padding.top}
+            stroke="#475569"
+            strokeWidth="2"
+          />
+        </svg>
+      </div>
     </div>
   )
 }
