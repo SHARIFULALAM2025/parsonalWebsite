@@ -72,28 +72,23 @@ const Graph = () => {
   return (
     <div
       style={bgStyle}
-      className="w-full p-6 shadow-2xl min-h-screen flex flex-col justify-center"
+      className="w-full shadow-2xl min-h-screen flex flex-col justify-center"
     >
-      <div className="max-w-7xl mx-auto px-4 w-full">
+      <div className="max-w-7xl mx-auto  w-full">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-1"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={container}
         >
           <motion.h2
-            className="text-4xl font-bold text-white"
+            className="text-4xl font-bold  bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
             variants={fadeInUp}
           >
             Skills & Expertise
           </motion.h2>
-          <motion.p
-            className="text-gray-400 mt-3 max-w-2xl mx-auto"
-            variants={fadeInUp}
-          >
-            Technologies and tools I use to build modern web applications
-          </motion.p>
+
         </motion.div>
 
         <svg
@@ -195,17 +190,17 @@ const Graph = () => {
                     y={y - 55}
                     textAnchor="middle"
                     fill={color}
-                    className="text-[12px] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    className="text-[12px] text-white font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                   >
                     {item.uv}
                   </motion.text>
 
-                  {/* X-Axis Labels with Rotation (বাঁকা টেক্সট) */}
+
                   <text
                     x={x + barWidth / 2}
                     y={chartHeight + padding.top + 35}
                     textAnchor="middle"
-                    /* এখানে ১৫ ডিগ্রি রোটেশন অ্যাড করা হয়েছে */
+
                     transform={`rotate(15, ${x + barWidth / 2}, ${chartHeight + padding.top + 35})`}
                     className="text-[11px] fill-slate-400 font-semibold uppercase tracking-wider"
                   >

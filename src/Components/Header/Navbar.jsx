@@ -113,7 +113,7 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {isOpen && (
-              <div className="md:hidden absolute top-full left-0 right-0 mt-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-200/20 dark:border-gray-700/20 z-50 animate-fade-in-up">
+              <div style={bgStyle} className="md:hidden absolute top-full left-0 right-0 mt-2   backdrop-blur-md rounded-2xl shadow-xl border border-gray-200/20 dark:border-gray-700/20 z-50 animate-fade-in-up">
                 {navItems.map((item) => (
                   <button
                     key={item.name}

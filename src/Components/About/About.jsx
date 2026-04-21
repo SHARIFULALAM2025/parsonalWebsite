@@ -69,11 +69,11 @@ const [mounted, setMounted] = useState(false)
     }, [])
   return (
     <Container>
-      <section style={bgStyle} id="about" className="py-24 ">
+      <section style={bgStyle} id="about" className="">
         <div className="container-custom">
           {/* Section Header */}
           <motion.div
-            className="text-center mb-20"
+            className="text-center "
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}

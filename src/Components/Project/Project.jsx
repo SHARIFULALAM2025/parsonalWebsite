@@ -189,7 +189,7 @@ const [mounted, setMounted] = useState(false)
       }, [])
   return (
     <Container>
-      <section style={bgStyle} id="projects" className="py-20 ">
+      <section style={bgStyle} id="projects" className=" ">
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-16">

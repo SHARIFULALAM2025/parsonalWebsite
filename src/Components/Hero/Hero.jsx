@@ -11,31 +11,22 @@ import Container from '../Container/Container'
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false)
-    const bgStyle =
 
-        {
-            backgroundColor: '#0F172A',
+  const bgStyle = {
+    backgroundColor: '#0F172A',
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23334155' fill-opacity='0.2' d='M1 3h1v1H1V3zm2-2h1v1H2V1z'%3E%3C/path%3E%3C/svg%3E")`,
+  }
 
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23334155' fill-opacity='0.2' d='M1 3h1v1H1V3zm2-2h1v1H2V1z'%3E%3C/path%3E%3C/svg%3E")`,
-          }
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
-
-    useEffect(() => {
-      setMounted(true)
-    }, [])
   const handleDownloadResume = () => {
-    window.open(
-      'Resume.pdf',
-      '_blank'
-    )
+    window.open('Resume.pdf', '_blank')
   }
   const handleCertificate = () => {
-    window.open(
-      '/development2.pdf',
-      '_blank'
-    )
+    window.open('/development2.pdf', '_blank')
   }
-
   const handleGetInTouch = () => {
     document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -58,18 +49,13 @@ const Hero = () => {
     },
   ]
 
-  // Motion variants
   const container = {
     hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
+    visible: { transition: { staggerChildren: 0.2 } },
   }
 
   const fadeInUp = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
@@ -86,86 +72,110 @@ const Hero = () => {
     },
   }
 
+  if (!mounted) return null
+
   return (
-    <Container>
-      <section
-        style={bgStyle}
-        id="home"
-        className="min-h-screen flex items-center"
-      >
-        <div className="max-w-7xl mx-auto px-4 py-20">
+    <div
+      style={bgStyle}
+      id="home"
+      className="min-h-screen w-full overflow-hidden"
+    >
+      <Container>
+        <section className="flex items-center justify-center min-h-screen py-10 lg:py-20">
           <motion.div
-            className="grid lg:grid-cols-2 gap-16 items-center"
+            className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center w-full"
             variants={container}
             initial="hidden"
             animate="visible"
           >
+            {/* Right Image (মোবাইলে ইমেজ আগে দেখানোর জন্য order-first ব্যবহার করতে পারেন, অথবা নিচে রাখতে পারেন) */}
+            <motion.div
+              className="flex justify-center order-first lg:order-last"
+              variants={fadeInScale}
+            >
+              <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1.5 shadow-2xl">
+                <div className="w-full h-full rounded-full bg-white dark:bg-gray-800 overflow-hidden border-4 border-slate-900/10">
+                  <img
+                    src="https://i.ibb.co.com/FktNZkRs/624134077-122170056674905684-5192487309492115686-n-removebg-preview.png"
+                    alt="Shariful Alam"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                {/* Floating Badge (Optional) */}
+                <div className="absolute -bottom-4 -right-4 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-xl hidden sm:block border border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center gap-3">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    <p className="text-sm font-bold dark:text-white">
+                      Available for Work
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
             {/* Left Content */}
             <motion.div
               className="text-center lg:text-left"
               variants={fadeInUp}
             >
-              <motion.p className="text-lg font-medium text-gray-600 dark:text-gray-300 mb-4">
+              <motion.p className="text-blue-500 dark:text-blue-400 font-bold tracking-widest uppercase text-sm mb-4">
                 Welcome to my digital world
               </motion.p>
 
               <motion.h1
-                className="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight mb-6"
+                className="text-4xl sm:text-6xl lg:text-7xl font-black leading-tight mb-6"
                 variants={fadeInUp}
               >
-                <span className="block text-gray-800 dark:text-gray-100">
-                  Hi, I'm
-                </span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400">
+                <span className="block text-gray-100">Hi, I'm</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400">
                   SHARIFUL ALAM
                 </span>
               </motion.h1>
 
               <motion.h2
-                className="text-2xl sm:text-3xl font-bold text-gray-700 dark:text-gray-200 mb-4"
+                className="text-xl sm:text-2xl font-bold text-gray-300 mb-6"
                 variants={fadeInUp}
               >
                 Full Stack Web Developer
               </motion.h2>
 
               <motion.p
-                className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl"
+                className="text-base sm:text-lg text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0"
                 variants={fadeInUp}
               >
-                Specializing{' '}
-                <span className="font-semibold text-blue-600 dark:text-blue-400">
+                Specializing in{' '}
+                <span className="text-white font-semibold">
                   React.js, Node.js, MongoDB
                 </span>{' '}
                 — I build scalable, clean, and user-focused web applications.
               </motion.p>
 
+              {/* Action Buttons */}
               <motion.div
-                className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start mb-10"
+                className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center lg:justify-start mb-10"
                 variants={fadeInUp}
               >
                 <button
                   onClick={handleDownloadResume}
-                  className="flex items-center justify-center gap-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-3 px-4 rounded-xl hover:from-blue-700 hover:to-purple-700 transition"
+                  className="flex items-center justify-center gap-2 bg-blue-600 text-white font-bold py-3 px-6 rounded-xl hover:bg-blue-700 transition-all active:scale-95 text-sm sm:text-base"
                 >
-                  <FaDownload />
-                  Download Resume
+                  <FaDownload /> Resume
                 </button>
                 <button
                   onClick={handleCertificate}
-                  className="flex items-center justify-center gap-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-3 px-4 rounded-xl hover:from-blue-700 hover:to-purple-700 transition"
+                  className="flex items-center justify-center gap-2 bg-purple-600 text-white font-bold py-3 px-6 rounded-xl hover:bg-purple-700 transition-all active:scale-95 text-sm sm:text-base"
                 >
-                  <FaAward />
-                  Download Certificate
+                  <FaAward /> Certificate
                 </button>
-
                 <button
                   onClick={handleGetInTouch}
-                  className="border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 font-bold py-3 px-4 rounded-xl hover:bg-blue-600 dark:hover:bg-blue-400 hover:text-white dark:hover:text-gray-900 transition"
+                  className="border-2 border-blue-500 text-blue-400 font-bold py-3 px-6 rounded-xl hover:bg-blue-500 hover:text-white transition-all active:scale-95 text-sm sm:text-base"
                 >
                   Get In Touch
                 </button>
               </motion.div>
 
+              {/* Socials */}
               <motion.div
                 className="flex gap-4 justify-center lg:justify-start"
                 variants={fadeInUp}
@@ -176,31 +186,17 @@ const Hero = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={social.label}
-                    className="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-blue-600 hover:text-white transition shadow-md"
+                    className="w-11 h-11 bg-gray-800 border border-gray-700 rounded-xl flex items-center justify-center text-gray-300 hover:border-blue-500 hover:text-blue-500 transition-all shadow-lg"
                   >
-                    <social.icon size={20} />
+                    <social.icon size={18} />
                   </a>
                 ))}
               </motion.div>
             </motion.div>
-
-            {/* Right Image */}
-            <motion.div className="flex justify-center" variants={fadeInScale}>
-              <div className="w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-2 shadow-2xl">
-                <div className="w-full h-full rounded-full bg-white dark:bg-gray-800 overflow-hidden">
-                  <img
-                    src="https://i.ibb.co.com/FktNZkRs/624134077-122170056674905684-5192487309492115686-n-removebg-preview.png"
-                    alt="Shariful Alam"
-                    className="w-full h-full object-cover object-top"
-                  />
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
-        </div>
-      </section>
-    </Container>
+        </section>
+      </Container>
+    </div>
   )
 }
 
