@@ -124,9 +124,12 @@ const Contact = () => {
   if (!mounted) return null
 
   return (
-    <div style={bgStyle} id="contact" className="w-full">
+    <div id="contact" className="w-full">
       <Container>
-        <section className="py-12 lg:py-24 px-4 sm:px-6 lg:px-8">
+        <section
+          style={bgStyle}
+          className="py-12 lg:py-24 px-4 sm:px-6 lg:px-8"
+        >
           {/* Header */}
           <motion.div
             className="text-center mb-12 lg:mb-20"

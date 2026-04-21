@@ -75,20 +75,18 @@ const Hero = () => {
   if (!mounted) return null
 
   return (
-    <div
-      style={bgStyle}
-      id="home"
-      className="min-h-screen w-full overflow-hidden"
-    >
+    <div id="home" className="min-h-screen w-full overflow-hidden">
       <Container>
-        <section className="flex items-center justify-center min-h-screen py-10 lg:py-20">
+        <section
+          style={bgStyle}
+          className="flex items-center justify-center min-h-screen py-10 lg:py-20"
+        >
           <motion.div
             className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center w-full"
             variants={container}
             initial="hidden"
             animate="visible"
           >
-            {/* Right Image (মোবাইলে ইমেজ আগে দেখানোর জন্য order-first ব্যবহার করতে পারেন, অথবা নিচে রাখতে পারেন) */}
             <motion.div
               className="flex justify-center order-first lg:order-last"
               variants={fadeInScale}
