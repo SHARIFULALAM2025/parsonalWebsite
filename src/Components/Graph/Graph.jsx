@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router'
 
 const data = [
   { name: 'React', uv: 3620, icon: '/React.svg' },
@@ -72,7 +73,7 @@ const Graph = () => {
   return (
     <div
       style={bgStyle}
-      className="w-full shadow-2xl min-h-screen flex flex-col justify-center"
+      className="w-full shadow-2xl min-h-screen flex flex-col justify-center relative"
     >
       <div className="max-w-7xl mx-auto  w-full">
         <motion.div
@@ -88,8 +89,46 @@ const Graph = () => {
           >
             Skills & Expertise
           </motion.h2>
-
         </motion.div>
+        <div className="flex flex-col items-center gap-2 group absolute top-12 right-1/2 translate-x-1/2 p-2">
+          <motion.div
+            animate={{
+              scale: [1, 1.1, 1], // ১ থেকে ১.১ হয়ে আবার ১ এ ফিরবে
+              rotate: [0, 5, -5, 0], // হালকা ডানে-বামে দুলবে
+            }}
+            transition={{
+              duration: 2, // ২ সেকেন্ড সময় নিবে
+              repeat: Infinity, // আজীবন চলতে থাকবে
+              ease: 'easeInOut',
+            }}
+            className="relative"
+          >
+            <Link
+              to="https://www.freecodecamp.org/shariful2026"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white h-14 w-14 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.3)] border border-gray-200"
+            >
+              <img
+                src="/free.svg"
+                alt="FreeCodeCamp Profile"
+                className="h-8 w-8 object-contain"
+              />
+            </Link>
+
+            {/* ডটেড বর্ডার যা ঘুরতে থাকবে */}
+            <div className="absolute inset-0 border-2 border-dotted border-white/40 rounded-full animate-[spin_8s_linear_infinite] pointer-events-none" />
+          </motion.div>
+
+          {/* টেক্সট এনিমেশন: এটিও ২ সেকেন্ড পর পর দেখা দিবে ও হারাবে */}
+          <motion.span
+            animate={{ opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="text-white text-[10px] uppercase font-bold tracking-widest bg-black/40 px-2 py-1 rounded backdrop-blur-sm"
+          >
+            FreeCodeCamp
+          </motion.span>
+        </div>
 
         <svg
           viewBox={`0 0 ${viewboxWidth} ${viewboxHeight}`}
@@ -195,12 +234,10 @@ const Graph = () => {
                     {item.uv}
                   </motion.text>
 
-
                   <text
                     x={x + barWidth / 2}
                     y={chartHeight + padding.top + 35}
                     textAnchor="middle"
-
                     transform={`rotate(15, ${x + barWidth / 2}, ${chartHeight + padding.top + 35})`}
                     className="text-[11px] fill-slate-400 font-semibold uppercase tracking-wider"
                   >
