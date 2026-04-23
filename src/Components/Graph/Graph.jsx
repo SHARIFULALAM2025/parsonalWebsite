@@ -3,9 +3,10 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router'
 
 const data = [
-  { name: 'React', uv: 3620, icon: '/React.svg' },
+  { name: 'Javascript', uv: 3500, icon: '/Javascript.png' },
+  { name: 'React', uv: 3000, icon: '/React.svg' },
   { name: 'Next.js', uv: 3000, icon: '/Next.svg' },
-  { name: 'Javascript', uv: 2900, icon: '/Javascript.png' },
+
   { name: 'Express.js', uv: 2780, icon: '/Express.png' },
   { name: 'MongoDB', uv: 2890, icon: '/MongoDB.svg' },
   { name: 'MY SQL', uv: 3090, icon: '/Sql.svg' },
@@ -16,9 +17,9 @@ const data = [
 ]
 
 const colors = [
+  '#FFBB28',
   '#61DAFB',
   '#FFFFFF',
-  '#FFBB28',
   '#94A3B8',
   '#00ED64',
   '#00758F',
