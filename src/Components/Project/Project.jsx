@@ -45,6 +45,32 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      name: 'Dreams Estate',
+      fullName: 'Dreams Estate  - Modern Real Estate platform',
+      image:
+        'https://i.ibb.co.com/6Jc1pZSM/screencapture-dreams-estate-zeta-vercel-app-2026-05-31-15-45-38.png',
+      shortDescription:
+        'A comprehensive real estate platform for buying, selling, and renting properties with advanced search and secure management.',
+      purpose:
+        'Dreams Estate simplifies property transactions by centralizing listings, enhancing transparency between owners and seekers, and providing a seamless management dashboard.',
+      features: [
+        'Private Routes: Only authenticated users can access listing details.',
+        'CRUD Operations: Users can Add, Update, and Delete their own property listings.',
+        'Advanced Filtering: Search by location, price range, and property type.',
+        'User-Specific Data: Personalized dashboard to view own properties and ratings.',
+        'Secure Booking: Users can view recent properties and book them instantly.',
+        'Rating System: Integration of @smastrom/react-rating for property feedback.',
+      ],
+      techStack: {
+        frontend: ['React 19',"javascript", 'Tailwind CSS', 'React Router'],
+        backend: ['PostgreSQL', 'Firebase Auth', 'Knex.js', ],
+      },
+      liveLink: 'https://dreams-estate-zeta.vercel.app/',
+      githubClient: 'https://github.com/SHARIFULALAM2025/Dreams-Estate',
+      featured: false,
+    },
+    {
+      id: 2,
       name: 'BookCourier - Smart Book Delivery & Management',
       fullName: 'BookCourier - Smart Book Delivery & Management',
       image: 'https://i.ibb.co.com/0VYcgYqx/Capture.png',
@@ -77,7 +103,7 @@ const Projects = () => {
     },
 
     {
-      id: 2,
+      id: 3,
       name: 'HomeNest',
       fullName: 'HomeNest - Modern Real Estate Marketplace',
       image: 'https://i.ibb.co.com/9m5RhmhR/Captsrsfure.png', // আপনার প্রজেক্টের স্ক্রিনশট লিংক এখানে দিন
@@ -108,7 +134,7 @@ const Projects = () => {
       featured: false,
     },
     {
-      id: 3,
+      id: 4,
       name: 'Care.xyz',
       fullName: 'Care.xyz - On-Demand Caregiving Platform',
       image: 'https://i.ibb.co.com/BKdpw6Nj/Captfthtfhure.png',
@@ -145,7 +171,7 @@ const Projects = () => {
       featured: true,
     },
     {
-      id: 4,
+      id: 5,
       name: 'E-commercial-website',
       fullName: 'E-commercial-website is an E-commercial platform',
       image: 'https://i.ibb.co.com/Myh4HsCh/Capsgsgsture.png',
@@ -159,7 +185,6 @@ const Projects = () => {
         'order : "easy functionality',
         'contact: smart contact system',
         'browse: category wise browse',
-
       ],
       techStack: {
         frontend: ['React 19', 'Tailwind CSS', 'Material UI', 'Swiper.js'],
