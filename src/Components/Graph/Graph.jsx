@@ -9,7 +9,7 @@ const data = [
 
   { name: 'Express.js', uv: 2780, icon: '/Express.png' },
   { name: 'MongoDB', uv: 2890, icon: '/MongoDB.svg' },
-  { name: 'MY SQL', uv: 3090, icon: '/Sql.svg' },
+  { name: 'PostgreSQL', uv: 3090, icon: '/PostgreSQL.png' },
   { name: 'HTML', uv: 3490, icon: '/html.svg' },
   { name: 'CSS', uv: 3600, icon: '/Css.svg' },
   { name: 'GIT ', uv: 3490, icon: '/git.svg' },
