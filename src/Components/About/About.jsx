@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaCode, FaCoffee, FaCamera, FaPlane, FaHeart } from 'react-icons/fa'
-import Container from '../Container/Container'
+
 
 const About = () => {
   const hobbies = [
@@ -46,14 +46,7 @@ const About = () => {
     },
   }
 
-  const fadeInScale = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.8, ease: 'easeOut' },
-    },
-  }
+  
 const [mounted, setMounted] = useState(false)
     const bgStyle =
 
@@ -68,7 +61,7 @@ const [mounted, setMounted] = useState(false)
       setMounted(true)
     }, [])
   return (
-    <Container>
+
       <section style={bgStyle} id="about" className="">
         <div className="container-custom">
           {/* Section Header */}
@@ -223,7 +216,7 @@ const [mounted, setMounted] = useState(false)
           </motion.div>
         </div>
       </section>
-    </Container>
+
   )
 }
 

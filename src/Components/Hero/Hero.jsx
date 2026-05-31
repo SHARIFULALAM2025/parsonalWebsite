@@ -7,7 +7,7 @@ import {
   FaFacebook,
   FaAward,
 } from 'react-icons/fa'
-import Container from '../Container/Container'
+
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false)
@@ -76,7 +76,7 @@ const Hero = () => {
 
   return (
     <div id="home" className="min-h-screen w-full overflow-hidden">
-      <Container>
+
         <section
           style={bgStyle}
           className="flex items-center justify-center min-h-screen py-10 lg:py-20"
@@ -193,7 +193,7 @@ const Hero = () => {
             </motion.div>
           </motion.div>
         </section>
-      </Container>
+     
     </div>
   )
 }

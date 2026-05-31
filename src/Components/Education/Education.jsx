@@ -10,7 +10,7 @@ import {
   FaUsers,
 } from 'react-icons/fa'
 import { useEffect } from 'react'
-import Container from '../Container/Container'
+
 
 const Education = () => {
   const education = [
@@ -111,7 +111,7 @@ const [mounted, setMounted] = useState(false)
         setMounted(true)
       }, [])
   return (
-    <Container>
+
       <section style={bgStyle} id="education" className="section-padding">
         <div className="container-custom">
           {/* Header */}
@@ -268,7 +268,7 @@ const [mounted, setMounted] = useState(false)
           </div>
         </div>
       </section>
-    </Container>
+  
   )
 }
 

@@ -12,7 +12,7 @@ import {
 import { MdMarkEmailRead } from 'react-icons/md'
 import { FaPhoneVolume } from 'react-icons/fa6'
 import { HiLocationMarker } from 'react-icons/hi'
-import Container from '../Container/Container'
+
 
 
 const Footer = () => {
@@ -69,7 +69,7 @@ const [mounted, setMounted] = useState(false)
         setMounted(true)
       }, [])
   return (
-    <Container>
+    
       <footer style={bgStyle} className=" relative">
         {/* Back to top */}
         <motion.button
@@ -191,7 +191,7 @@ const [mounted, setMounted] = useState(false)
           </motion.div>
         </div>
       </footer>
-    </Container>
+
   )
 }
 

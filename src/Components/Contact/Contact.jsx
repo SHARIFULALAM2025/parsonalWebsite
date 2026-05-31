@@ -12,7 +12,7 @@ import {
 import { useForm } from 'react-hook-form'
 import emailjs from '@emailjs/browser'
 import { uploadImage } from '../UploadImage/UploadImage'
-import Container from '../Container/Container'
+
 
 const Contact = () => {
   const [isSending, setIsSending] = useState(false)
@@ -125,7 +125,7 @@ const Contact = () => {
 
   return (
     <div id="contact" className="w-full">
-      <Container>
+
         <section
           style={bgStyle}
           className="py-12 lg:py-24 px-4 sm:px-6 lg:px-8"
@@ -297,7 +297,7 @@ const Contact = () => {
           </div>
         </section>
         <ToastContainer position="bottom-right" theme="dark" />
-      </Container>
+      
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { FiMenu, FiX, FiCode } from 'react-icons/fi'
-import Container from '../Container/Container'
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -58,8 +58,8 @@ const Navbar = () => {
     <nav
       className={` fixed top-0  left-0 right-0  z-50 transition-all duration-300 `}
     >
-      <Container>
-        {/* Container */}
+
+        
         <div
           className={`transition-all duration-300 ${
             scrolled
@@ -127,7 +127,7 @@ const Navbar = () => {
             )}
           </div>
         </div>
-      </Container>
+
     </nav>
   )
 }

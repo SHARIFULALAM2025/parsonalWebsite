@@ -10,7 +10,7 @@ import {
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import IconButton from '@mui/material/IconButton'
 import { Modal, Box, Typography, Divider } from '@mui/material'
-import Container from '../Container/Container'
+
 
 // Modal Style - তথ্য বেশি তাই একটু চওড়া (md: 800) করা হয়েছে
 const modalStyle = {
@@ -188,7 +188,7 @@ const [mounted, setMounted] = useState(false)
         setMounted(true)
       }, [])
   return (
-    <Container>
+
       <section style={bgStyle} id="projects" className=" ">
         <div className="container mx-auto px-4">
           {/* Header */}
@@ -403,7 +403,7 @@ const [mounted, setMounted] = useState(false)
           </Box>
         </Modal>
       </section>
-    </Container>
+
   )
 }
 
