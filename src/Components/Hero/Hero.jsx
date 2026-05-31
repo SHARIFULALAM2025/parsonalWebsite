@@ -90,23 +90,15 @@ const Hero = () => {
             className="flex justify-center order-first lg:order-last"
             variants={fadeInScale}
           >
-            <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1.5 shadow-2xl">
+            <div className=" w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1.5 shadow-2xl">
               <div className="w-full h-full rounded-full bg-white dark:bg-gray-800 overflow-hidden border-4 border-slate-900/10">
                 <img
-                  src="https://i.ibb.co.com/FktNZkRs/624134077-122170056674905684-5192487309492115686-n-removebg-preview.png"
+                  src="https://i.ibb.co.com/wFTwc4Nx/3a400eae-446b-49b6-903d-aa11b88fdde2d4.png"
                   alt="Shariful Alam"
                   className="w-full h-full object-cover object-top"
                 />
               </div>
-              {/* Floating Badge (Optional) */}
-              <div className="absolute -bottom-4 -right-4 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-xl hidden sm:block border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <p className="text-sm font-bold dark:text-white">
-                    Available for Work
-                  </p>
-                </div>
-              </div>
+
             </div>
           </motion.div>
 
@@ -141,7 +133,7 @@ const Hero = () => {
               <span className="text-white font-semibold">
                 Next .js,React.js, Express.js,PostgreSQL,MongoDB
               </span>{' '}
-               I build scalable, clean, and user-focused web applications.
+              I build scalable, clean, and user-focused web applications.
             </motion.p>
 
             {/* Action Buttons */}
