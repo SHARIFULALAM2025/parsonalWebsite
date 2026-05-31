@@ -101,10 +101,10 @@ const [mounted, setMounted] = useState(false)
             className="bg-white dark:bg-gray-800 rounded-3xl p-10 shadow-xl border border-gray-100 dark:border-gray-700"
             variants={fadeInUp}
           >
-            <h3 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-6">
+            <h3 className="text-3xl font-bold text-white mb-6">
               My Programming Journey
             </h3>
-            <div className="space-y-5 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+            <div className="space-y-5 text-lg text-white leading-relaxed">
               <p>
                 Welcome to my digital world! I'm{' '}
                 <span className="font-bold text-blue-600 dark:text-blue-400">
@@ -118,7 +118,6 @@ const [mounted, setMounted] = useState(false)
                 <span className="font-semibold text-purple-600 dark:text-purple-400">
                   Next .js,React.js,
                 </span>
-
                 <span className="font-semibold text-green-600 dark:text-green-400">
                   Express.js,PostgreSQL,MongoDB
                 </span>
@@ -144,7 +143,7 @@ const [mounted, setMounted] = useState(false)
                 <div className="text-4xl font-extrabold text-blue-600 dark:text-blue-400">
                   50+
                 </div>
-                <p className="mt-2 text-gray-700 dark:text-gray-300 font-medium">
+                <p className="mt-2 text-white font-medium">
                   Projects Completed
                 </p>
               </motion.div>
@@ -156,9 +155,7 @@ const [mounted, setMounted] = useState(false)
                 <div className="text-4xl font-extrabold text-purple-600 dark:text-purple-400">
                   3+
                 </div>
-                <p className="mt-2 text-gray-700 dark:text-gray-300 font-medium">
-                  Years Experience
-                </p>
+                <p className="mt-2 text-white font-medium">Years Experience</p>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -167,7 +164,7 @@ const [mounted, setMounted] = useState(false)
           <motion.div className="space-y-12" variants={fadeInUp}>
             {/* Hobbies */}
             <motion.div variants={container}>
-              <h3 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-6">
+              <h3 className="text-3xl font-bold text-white mb-6">
                 Hobbies & Interests
               </h3>
               <motion.div
@@ -187,10 +184,8 @@ const [mounted, setMounted] = useState(false)
                       >
                         <Icon size={30} className="text-white" />
                       </div>
-                      <h4 className="font-bold text-gray-800 dark:text-gray-200">
-                        {hobby.name}
-                      </h4>
-                      <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                      <h4 className="font-bold text-white">{hobby.name}</h4>
+                      <p className="mt-2 text-sm text-white">
                         {hobby.description}
                       </p>
                     </motion.div>
@@ -207,7 +202,7 @@ const [mounted, setMounted] = useState(false)
               <blockquote className="text-xl italic text-gray-700 dark:text-gray-300 mb-4">
                 "Code is like humor. When you have to explain it, it's bad."
               </blockquote>
-              <cite className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+              <cite className="flex items-center gap-2 text-white">
                 <FaHeart className="text-red-500" /> Cory House
               </cite>
             </motion.div>

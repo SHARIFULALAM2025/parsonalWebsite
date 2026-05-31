@@ -152,7 +152,7 @@ const Graph = () => {
                   x={padding.left - 15}
                   y={yPos + 4}
                   textAnchor="end"
-                  className="text-xs fill-slate-500 font-medium"
+                  className="text-xs fill-slate-100 font-medium"
                 >
                   {tick * 100}%
                 </text>
@@ -230,7 +230,7 @@ const Graph = () => {
                     y={y - 55}
                     textAnchor="middle"
                     fill={color}
-                    className="text-[12px] text-white font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    className="text-[12px] fill-slate-100 font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                   >
                     {item.uv}
                   </motion.text>
@@ -240,7 +240,7 @@ const Graph = () => {
                     y={chartHeight + padding.top + 35}
                     textAnchor="middle"
                     transform={`rotate(15, ${x + barWidth / 2}, ${chartHeight + padding.top + 35})`}
-                    className="text-[11px] fill-slate-400 font-semibold uppercase tracking-wider"
+                    className="text-[11px] fill-slate-100 font-semibold uppercase tracking-wider"
                   >
                     {item.name}
                   </text>

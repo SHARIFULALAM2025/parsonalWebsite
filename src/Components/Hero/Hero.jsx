@@ -126,7 +126,7 @@ const Hero = () => {
             </motion.h2>
 
             <motion.p
-              className="text-base sm:text-lg text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0"
+              className="text-base sm:text-lg text-white mb-8 max-w-xl mx-auto lg:mx-0"
               variants={fadeInUp}
             >
               Specializing in{' '}
