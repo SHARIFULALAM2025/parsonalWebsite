@@ -220,7 +220,7 @@ const [mounted, setMounted] = useState(false)
           <div className="flex justify-center items-center gap-3 mb-4">
             <FaBolt className="text-yellow-500 text-3xl animate-pulse" />
             <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white">
-              Featured Projects
+                Top (5) Projects
             </h2>
             <FaBolt className="text-yellow-500 text-3xl animate-pulse" />
           </div>
